@@ -8,5 +8,18 @@ namespace Inheritance
     {
         public string Upc { get; set; }
         public string Brand { get; set; }
+
+        public override string PrintInfo()
+        {
+            if(Upc is null || Upc == "")
+            {
+                throw new ArgumentNullException("Upc is not valid", new ArgumentNullException());
+            }
+            if(Brand is null || Brand == "")
+            {
+                throw new ArgumentNullException("Brand is not valid", new ArgumentNullException());
+            }
+            return $"{Upc} - {Brand}";
+        }
     }
 }
