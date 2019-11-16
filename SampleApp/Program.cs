@@ -17,6 +17,8 @@ namespace SampleApp
             }
             PrintConfigSettings(fileConfig, testStrings);
         }
+
+        // MMM Comment: Great refactoring for testibility.
         public static string FindSetting(IConfig config, string name)
         {
             if(config is null)

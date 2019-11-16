@@ -4,6 +4,7 @@ using System.Text;
 
 namespace Configuration
 {
+    // MMM Comment: Preferable if this is in a test project.
     public class MockConfig : IConfig
     {
         private Dictionary<string, string> keyValuePairs;
@@ -38,6 +39,7 @@ namespace Configuration
                 return false;
             }else if (keyValuePairs.ContainsKey(key))
             {
+                // MMM Comment: Use null forgiveness operator
 #pragma warning disable CS8601 // Possible null reference assignment.
                 keyValuePairs[key] = value;
 #pragma warning restore CS8601 // Possible null reference assignment.

@@ -5,6 +5,7 @@ using System.Text;
 
 namespace Configuration.Tests
 {
+    // MMM Comment: Use GetConfigValue and SetConfigValue in same test to validate each other.
     [TestClass]
     public class EnvironmentConfigTests
     {
@@ -22,6 +23,8 @@ namespace Configuration.Tests
             string? value = "";
             environment.GetConfigValue(name, out value);
         }
+
+        // MMM Comment: Good selection of invalid data.
         [DataTestMethod]
         [DataRow("", " ")]
         [DataRow(" ", " ")]

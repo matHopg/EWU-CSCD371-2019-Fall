@@ -28,20 +28,24 @@ namespace Configuration
             Environment.SetEnvironmentVariable(key, pair, EnvironmentVariableTarget.Process);
             return true;
         }
-
+        
+        // MMM Comment: Good to see this refactoring
         private static bool nameCheck(string? key)
         {
             if (key is null)
             {
+                // MMM Comment: throw ArgumentNullException instead.
                 throw new ArgumentException($"The key: {key} is null");
             }
             else if (string.IsNullOrEmpty(key))
             {
+                // MMM Comment: Always provide parameter name argument with nameof operator.
                 throw new ArgumentException($"The key: {key} is empty");
             }
             else if (string.IsNullOrWhiteSpace(key))
             {
                 throw new ArgumentException($"The key: {key} is just whitespace");
+                // MMM Comment: Disable at the project level.
 #pragma warning disable CA1307 // Specify StringComparison
             }
             else if (key.Contains(SPACE))

@@ -56,6 +56,7 @@ namespace Configuration
                 {
                     string[] currentLine = lines[steps].Split(EQUALS);
 
+                    // MMM Comment: Use null forgiveness operator
 #pragma warning disable CS8601 // Possible null reference assignment.
                     currentLine[1] = value;
 #pragma warning restore CS8601 // Possible null reference assignment.
@@ -78,6 +79,7 @@ namespace Configuration
             }
         }
 
+        // MMM Comment: Isn't this code a duplicate?  Why not refactor?
         private static bool nameCheck(string? name)
         {
             if(name is null)
