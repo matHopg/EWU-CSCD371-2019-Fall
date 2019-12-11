@@ -4,9 +4,22 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:ShoppingList"
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
+        Title="Shopping List" 
+        MinHeight="600"
+        MinWidth="800"
     <Grid>
-
+        <Grid.RowDefinitions>
+            <RowDefinition Height="2*"/>
+            <RowDefinition Height="10*"/>
+        </Grid.RowDefinitions>
+    <materialDesign:ColorZone Mode="PrimaryMid"
+                                  VerticalAlignment="Stretch"
+                                  materialDesign:ShadowAssist.ShadowDepth="Depth2"
+                                  MaxHeight="140">
+        <Grid Margin="10"
+              VerticalAlignment="Center">
+    </materialDesign:ColorZone>
     </Grid>
 </Window>
