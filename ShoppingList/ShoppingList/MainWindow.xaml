@@ -5,8 +5,53 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:ShoppingList"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
-    <Grid>
+        Title="MainWindow" Height="600" Width="450" FontSize="26">
+    <Window.Resources>
+        <local:VisibilityConverter x:Key="Visibility"/>
+    </Window.Resources>
+
+    <Grid Background="DarkSlateGray">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+        <ListBox x:Name="ShoppingListBox"
+                 Grid.Row="0"
+                 Background="WhiteSmoke"
+                 ItemsSource="{Binding MyShoppkingList}"
+                 SelectedItem="{Binding SelectedShopItem}">
+            <ListBox.ItemTemplate>
+                <DataTemplate DataType="{x:Type local:ShopItem}">
+                    <StackPanel>
+                        <TextBlock Text="{Binding Name}"/>
+                    </StackPanel>
+                </DataTemplate>
+            </ListBox.ItemTemplate>            
+        </ListBox>
+        <TextBox Text="{Binding NewName}"
+                 Grid.Row="1"
+                 Background="Lavender"
+                 BorderThickness="1"
+                 BorderBrush="Azure"/>
+        <Button Content="Add Item"
+                Command="{Binding AddItem}"
+                Grid.Row="2"
+                Background="LavenderBlush"
+                BorderBrush="AliceBlue"
+                BorderThickness="2"/>
+        <DockPanel Visibility="{Binding SelectedShopItem, Converter={StaticResource Visibility}}"
+                   Grid.Row="3" Grid.Column="0"
+                   Grid.ColumnSpan="2">
+            <TextBlock Text="Edit Name:" Margin="10,5"/>
+            <TextBlock Text="{Binding SelectedShopItem.Name, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"/>
+                       
+        </DockPanel>
+
 
     </Grid>
 </Window>

@@ -4,6 +4,16 @@
     <OutputType>WinExe</OutputType>
     <TargetFramework>netcoreapp3.0</TargetFramework>
     <UseWPF>true</UseWPF>
+    <Nullable>enable</Nullable>
+    <NoWarn>AD001</NoWarn>
   </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+   
+  </PropertyGroup>
+  <ItemGroup>
+    <PackageReference Include="Intellitect.Analyzers" Version="0.1.3"/>
+    <PackageReference Include="MvvmLightLibsStd10" Version="5.4.1.1"/>
+    <PackageReference Include="MvvmLight" Version="5.4.1.1"/>
+  </ItemGroup>
 
 </Project>
