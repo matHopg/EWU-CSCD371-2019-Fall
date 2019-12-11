@@ -4,22 +4,58 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:ShoppingList"
-        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
         mc:Ignorable="d"
-        Title="Shopping List" 
-        MinHeight="600"
-        MinWidth="800"
-    <Grid>
+         Title="MainWindow" Height="450" Width="300">
+
+
+
+    <Window.Resources>
+        <local:VisibilityConverter x:Key="VisibilityConverter"/>
+        <DataTemplate DataType="{x:Type local:ShopItem}" x:Key="ShopItemTemplate">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+                <TextBox Text="{Binding ShopItemName, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
+                         Background="LightBlue"
+                         BorderBrush="DarkGray"
+                         BorderThickness="3"/>
+            </Grid>
+        </DataTemplate>
+    </Window.Resources>
+
+    <Grid Background="Aqua">
         <Grid.RowDefinitions>
-            <RowDefinition Height="2*"/>
-            <RowDefinition Height="10*"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*" />
+            <RowDefinition Height="Auto" />
         </Grid.RowDefinitions>
-    <materialDesign:ColorZone Mode="PrimaryMid"
-                                  VerticalAlignment="Stretch"
-                                  materialDesign:ShadowAssist.ShadowDepth="Depth2"
-                                  MaxHeight="140">
-        <Grid Margin="10"
-              VerticalAlignment="Center">
-    </materialDesign:ColorZone>
+
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition />
+            <ColumnDefinition Width="Auto" />
+        </Grid.ColumnDefinitions>
+
+        <TextBox Text="{Binding NewShopItemName}"
+             Grid.Row="0" 
+             Grid.Column="0"
+             Background="AliceBlue"
+        />
+
+        <Button Content="Add ShopItem"
+             Command="{Binding AddShopItem}" CommandParameter="{Binding Text, ElementName=NewShopItem}"
+             Grid.Row="0" Grid.Column="1"
+             Background="LightSkyBlue"
+        />
+
+        <ListBox x:Name="ShopItemList"
+             ItemsSource="{Binding ShopItems}" SelectedItem="{Binding SelectedShopItem}"
+             ItemTemplate="{StaticResource ShopItemTemplate}"
+             HorizontalContentAlignment="Stretch"
+             Grid.Row="1" 
+             Grid.Column="0"
+             Grid.ColumnSpan="2"
+             Background="LightCyan"
+        />
     </Grid>
 </Window>
